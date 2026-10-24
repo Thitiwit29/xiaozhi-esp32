@@ -1,14 +1,11 @@
 name: Build
-
 on:
   push:
     branches:
       - phat-1
   workflow_dispatch:
-
 permissions:
   contents: read
-
 jobs:
   build:
     name: Build bread-compact-wifi only
@@ -20,13 +17,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
       - name: Build bread-compact-wifi
-        run: |
-        source /opt/esp/idf/export.sh
-        pip install rich_click
-          python scripts/build.py bread-compact-wifi --name bread-compact-wifi
-
+        run: source /opt/esp/idf/export.sh && pip install rich_click && python scripts/build.py bread-compact-wifi --name bread-compact-wifi
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
