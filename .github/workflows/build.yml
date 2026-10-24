@@ -18,7 +18,11 @@ jobs:
         with:
           fetch-depth: 0
       - name: Build bread-compact-wifi
-        run: source /opt/esp/idf/export.sh && pip install rich_click && python scripts/build.py bread-compact-wifi --name bread-compact-wifi
+        shell: bash
+        run: |
+          . /opt/esp/idf/export.sh
+          pip install rich_click
+          python scripts/build.py bread-compact-wifi --name bread-compact-wifi
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
