@@ -1378,22 +1378,7 @@ void Application::WakeWordInvoke(const std::string& wake_word) {
     }
 }
 
-bool Application::CanEnterSleepMode() {
-    if (GetDeviceState() != kDeviceStateIdle) {
-        return false;
-    }
 
-    if (protocol_ && protocol_->IsAudioChannelOpened()) {
-        return false;
-    }
-
-    if (!audio_service_.IsIdle()) {
-        return false;
-    }
-
-    // Now it is safe to enter sleep mode
-    return true;
-}
 
 void Application::RegisterMcpBroadcastCallback(std::function<void(const std::string&)> callback) {
     mcp_broadcast_callback_ = std::move(callback);
