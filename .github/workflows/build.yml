@@ -23,6 +23,8 @@ jobs:
 
       - name: Build bread-compact-wifi
         run: |
+        . /opt/esp/idf/export.sh
+        pip install rich_click
           python scripts/build.py bread-compact-wifi --name bread-compact-wifi
 
       - name: Upload artifact
