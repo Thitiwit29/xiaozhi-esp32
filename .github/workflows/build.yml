@@ -23,7 +23,7 @@ jobs:
 
       - name: Build bread-compact-wifi
         run: |
-          python scripts/build.py bread-compact-wifi
+          python scripts/build.py bread-compact-wifi --name bread-compact-wifi
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
