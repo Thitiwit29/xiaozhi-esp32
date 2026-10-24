@@ -1378,7 +1378,9 @@ void Application::WakeWordInvoke(const std::string& wake_word) {
     }
 }
 
-
+bool Application::CanEnterSleepMode() {
+    return false;
+}
 
 void Application::RegisterMcpBroadcastCallback(std::function<void(const std::string&)> callback) {
     mcp_broadcast_callback_ = std::move(callback);
