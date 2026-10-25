@@ -795,11 +795,11 @@ void Application::HandleToggleChatEvent() {
 
     if (state == kDeviceStateNotifying) {
         StopNotification();
-        state = kDeviceStateIdle;
+        state = kDeviceStateListening;
     }
 
     if (state == kDeviceStateActivating) {
-        SetDeviceState(kDeviceStateIdle);
+        SetDeviceState(kDeviceStateListening);
         return;
     } else if (state == kDeviceStateWifiConfiguring) {
         audio_service_.EnableAudioTesting(true);
