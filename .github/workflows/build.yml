@@ -27,5 +27,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: xiaozhi_bread-compact-wifi_pro_no_sleep
-          path: build
+          path: build/**/merged-bina
           retention-days: 7
