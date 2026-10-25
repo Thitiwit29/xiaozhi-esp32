@@ -643,7 +643,7 @@ void Application::InitializeProtocol() {
                 Schedule([this]() {
                     if (GetDeviceState() == kDeviceStateSpeaking) {
                         if (listening_mode_ == kListeningModeManualStop) {
-                            SetDeviceState(kDeviceStateIdle);
+                            SetDeviceState(kDeviceStateListening);//OBD friend PRO always listening
                         } else {
                             SetDeviceState(kDeviceStateListening);
                         }
