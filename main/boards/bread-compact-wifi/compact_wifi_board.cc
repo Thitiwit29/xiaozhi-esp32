@@ -114,7 +114,7 @@ private:
             ESP_LOGI(TAG, "OBD Friend PRO: Long press to enter WiFi config");
             GetDisplay()->ShowNotification("WiFi Config Mode");
             EnterWifiConfigMode();
-        },);
+        });
         touch_button_.OnPressDown([this]() {
             Application::GetInstance().StartListening();
         });
