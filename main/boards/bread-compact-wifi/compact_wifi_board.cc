@@ -109,6 +109,12 @@ private:
             }
             app.ToggleChatState();
         });
+             // === OBD PRO เพิ่มตรงนี้จุดเดียว ===
+        boot_button_.OnLongPress([this]() {
+            ESP_LOGI(TAG, "OBD Friend PRO: Long press to enter WiFi config");
+            GetDisplay()->ShowNotification("WiFi Config Mode");
+            EnterWifiConfigMode();
+        });   
         touch_button_.OnPressDown([this]() {
             Application::GetInstance().StartListening();
         });
@@ -150,8 +156,16 @@ private:
     // 物联网初始化，逐步迁移到 MCP 协议
     void InitializeTools() {
         static LampController lamp(LAMP_GPIO);
-    }
+        auto& mcp_server = McpServer::GetInstance();
 
+        // === OBD PRO จุดที่ 2 - สั่งด้วยเสียง "เปลี่ยน WiFi" ===
+        mcp_server.AddTool("self.wifi.enter_config", "Switch Wifi or setup new WiFi", PropertyList(), [this](const PropertyList& properties) -> ReturnValue {
+            ESP_LOGI(TAG, "OBD Friend PRO: Voice WiFi config");
+            GetDisplay()->ShowNotification("WiFi Config Mode");
+            EnterWifiConfigMode();
+            return true;
+        });
+    }    
 public:
     CompactWifiBoard() :
         boot_button_(BOOT_BUTTON_GPIO),
